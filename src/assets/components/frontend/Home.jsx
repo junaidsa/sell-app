@@ -47,6 +47,7 @@ function Home() {
       <div className="jumbotron">
         <div className="container">
           <div className="row">
+            
             <div className="col-md-6 sm-6">
               <h1 className='text-white fs-bold header-heading'>Capture <span className='em-text'>Life</span></h1>
               <p className='text-white header-p'>A fun and easy way to capture & Share the moments you live for</p>
@@ -59,29 +60,31 @@ function Home() {
           </div>
         </div>
       </div>
-
       <div className="container">
-        <div className='row'>
-          <div className="col-md-4">
-            <CardGroup className='mt-5'>
-              <Card>
-                <Card.Img variant="top" src="/src/assets/images/mobile.jpeg" />
-                <Card.Body>
-                  <Card.Title>Lorem Ipsum</Card.Title>
-                  <Card.Text>
-                    This is a wider card with supporting text below as a natural lead-in
-                    to additional content. This card has even longer content than the
-                    first to show that equal height action.
-                  </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-              </Card>
-            </CardGroup>
-          </div>
-        </div>
+      <div className="row">
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          items.map((item) => (
+            <div key={item.id} className="col-md-4">
+              <CardGroup className="mt-5">
+                <Card>
+                  <Card.Img className='img-thumbnail' variant="top" src={item.image} alt={item.title} width={"20px"} />
+                  <Card.Body>
+                    <Card.Title>{item.title}</Card.Title>
+                    <Card.Text>{item.description}</Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">Price: ${item.price}</small>
+                  </Card.Footer>
+                </Card>
+              </CardGroup>
+            </div>
+          ))
+        )}
       </div>
+    </div>
+
 
       <section id='feature'>
         <div className="container">

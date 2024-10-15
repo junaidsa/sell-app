@@ -4,11 +4,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import { BrowserRouter, Routes,Route,Link } from "react-router-dom"
+import React, { useState, useEffect } from "react";
 
 
 
 function About() {
+  useEffect(() => {
+
+  },[]);
   return (
+  
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
