@@ -4,14 +4,29 @@ import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import { BrowserRouter, Routes,Route,Link } from "react-router-dom"
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+const [aboutUs, setAboutUs] = useState('');
+const [loading, setLoading] = useState(true);
+
 
 
 
 function About() {
   useEffect(() => {
+    const fetchAboutUs = async () => {
+      try {
+        const response = await axios.get('https://dummyjson.com/auth/RESOURCE'); // Replace with your actual API endpoint
+        setAboutUs(response.data.aboutContent); // Assuming the API response contains 'aboutContent'
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching About Us content:', error);
+        setLoading(false);
+      }
+    };
 
-  },[]);
+    fetchAboutUs();
+  }, []);
   return (
   
     <>
@@ -42,7 +57,11 @@ function About() {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, inventore! Itaque ea vitae culpa possimus. Atque mollitia dolore consectetur delectus eligendi doloremque aperiam optio, aliquid beatae aliquam necessitatibus odit. Esse, voluptatibus. Commodi quidem aspernatur exercitationem? Excepturi voluptate perferendis, corrupti unde velit quos culpa sed fuga exercitationem eaque vel, molestias qui doloribus ea vero autem delectus eos suscipit quisquam? Eveniet, assumenda laudantium facere nemo, repudiandae dignissimos id minus impedit nostrum magnam eius, vero nisi possimus quos iste? Odit incidunt, fugiat ab, quas saepe libero ipsam aliquid quaerat optio aliquam at adipisci vel. Dolores dolore sunt provident sit vel labore ea saepe, ipsa commodi, corporis maxime tempora nemo. Harum eius error modi labore quas. Dignissimos totam voluptas vel accusamus optio impedit nisi aliquid illum, tempore quod, sed officiis commodi. Quos minima, consectetur repudiandae eum facilis excepturi commodi saepe non? Maxime, magni beatae. Quaerat blanditiis deleniti qui dicta animi iusto eos ipsam, facilis alias voluptatem magni explicabo corrupti natus error, quam ab nesciunt sunt architecto! Aspernatur libero, a, repellendus consequatur laborum molestias quibusdam quo, laboriosam ex voluptas odit? Quam itaque libero non aut voluptate voluptatum a maiores iste quasi doloribus, quisquam rerum atque repudiandae, optio accusamus. Esse reiciendis dolor earum repudiandae aut vero eligendi veritatis non distinctio voluptas quia molestiae omnis totam facilis minus, illum, possimus rerum at, aliquam error natus itaque. Minima sequi quaerat perspiciatis voluptas sunt delectus repellendus eveniet soluta ratione consequuntur aliquam dolor culpa ipsa harum mollitia expedita pariatur maiores possimus praesentium enim voluptates est dolore, eius inventore. Numquam ad voluptatem enim eaque accusantium nam nisi aliquam porro doloremque assumenda minima, illum dicta explicabo dolore debitis consequuntur autem quis itaque eligendi excepturi possimus a dolorum. Suscipit eum est sit unde esse sed adipisci a vero, pariatur perferendis fugiat consequuntur quia necessitatibus saepe quas, cupiditate repellat qui repudiandae libero molestias tempora?</p>
+            {loading ? (
+              <p>Loading About Us content...</p>
+            ) : (
+              <p>{aboutUs}</p> // Dynamically rendered About Us content
+            )}
             </div>
 
           </div>
